@@ -93,4 +93,106 @@
             z-index: 999;
             color: #fff;
             font-size: 2rem;
-            text-align: cen
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4d4d;
+            transform: rotate(45deg);
+            animation: float 3s ease-in infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+        }
+
+        .heart:before { top: -10px; left: 0; }
+        .heart:after { left: 10px; top: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+            100% { transform: translateY(600px) rotate(45deg); opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .btn { font-size: 1rem; padding: 12px 18px; min-width: 120px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Hej, Księżniczko <3</h1>
+    <p>Mam do Ciebie pytanie...</p>
+
+    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjM1b2NkYTRxaGJlbjR3d2U0OXM3Y2w1a25lcGd6cDVtYzl5ODdycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6tUItEAe6J8yWHV1Am/giphy.gif" alt="Funny Valentine GIF" />
+
+    <h1>Będziesz moją Walentynką???</h1>
+
+    <div class="buttons">
+        <button class="btn yes-btn">YESSSS!</button>
+        <button class="btn nope-btn">NOŁ</button>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <h2>HIHIHI <br />Masz szczęście! <br />Kocham Cię najmocniej!!!</h2>
+    </div>
+
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        const nopeBtn = document.querySelector('.nope-btn');
+        const yesBtn = document.querySelector('.yes-btn');
+        const overlay = document.getElementById('overlay');
+        const confettiContainer = document.getElementById('confetti');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "%";
+            confettiContainer.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 3000);
+        }
+
+        yesBtn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            confettiContainer.style.display = 'block';
+            setInterval(createHeart, 300);
+        });
+
+        nopeBtn.addEventListener('mouseover', () => {
+            nopeBtn.classList.add('move');
+            nopeBtn.style.top = Math.random() * 80 + "%";
+            nopeBtn.style.left = Math.random() * 80 + "%";
+        });
+
+        nopeBtn.addEventListener('click', () => {
+            alert("Hmm, o co chodzi? Sprawdź czy ten drugi guzik działa!");
+        });
+    </script>
+
+</body>
+</html>
