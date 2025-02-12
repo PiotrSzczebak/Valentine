@@ -165,69 +165,70 @@
 <body>
 
     <!-- Heading -->
-    <h1>Hej, Księżniczko <3</h1>
-    <p>Mam do Ciebie pytanie...</p>
+    <h1>Hej, Księżniczko <3< /h1>
+            <p>Mam do Ciebie pytanie...</p>
 
-    <!-- Funny GIF (Replace with your own link if you want) -->
-    <img src="https://media.giphy.com/media/l41lXu2y4QV3sKwkA/giphy.gif" alt="Funny Valentine GIF" />
+            <!-- Funny GIF (Replace with your own link if you want) -->
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjM1b2NkYTRxaGJlbjR3d2U0OXM3Y2w1a25lcGd6cDVtYzl5ODdycCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/6tUItEAe6J8yWHV1Am/giphy.gif"
+                alt="Funny Valentine GIF" />
 
-    <!-- The Big Question -->
-    <h1>Będziesz moją Walentynką</h1>
+            <!-- The Big Question -->
+            <h1>Będziesz moją Walentynką???</h1>
 
-    <!-- Buttons -->
-    <div class="buttons">
-        <button class="btn yes-btn">YESSSS!</button>
-        <button class="btn nope-btn">NOŁ</button>
-    </div>
+            <!-- Buttons -->
+            <div class="buttons">
+                <button class="btn yes-btn">YESSSS!</button>
+                <button class="btn nope-btn">NOŁ</button>
+            </div>
 
-    <!-- Overlay message for when "Yes!" is clicked -->
-    <div class="overlay" id="overlay">
-        <h2>YAY! <br />Masz szczęście <br />Kocham Cię najmocniej!!!</h2>
-    </div>
+            <!-- Overlay message for when "Yes!" is clicked -->
+            <div class="overlay" id="overlay">
+                <h2>HIHIHI <br />Masz szczęście <br />Kocham Cię najmocniej!!!</h2>
+            </div>
 
-    <!-- Confetti container -->
-    <div class="confetti" id="confetti"></div>
+            <!-- Confetti container -->
+            <div class="confetti" id="confetti"></div>
 
-    <script>
-        // Grab elements
-        const nopeBtn = document.querySelector('.nope-btn');
-        const yesBtn = document.querySelector('.yes-btn');
-        const overlay = document.getElementById('overlay');
-        const confettiContainer = document.getElementById('confetti');
+            <script>
+                // Grab elements
+                const nopeBtn = document.querySelector('.nope-btn');
+                const yesBtn = document.querySelector('.yes-btn');
+                const overlay = document.getElementById('overlay');
+                const confettiContainer = document.getElementById('confetti');
 
-        // Function to create floating hearts (confetti effect)
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + "%";
-            confettiContainer.appendChild(heart);
+                // Function to create floating hearts (confetti effect)
+                function createHeart() {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.style.left = Math.random() * 100 + "%";
+                    confettiContainer.appendChild(heart);
 
-            setTimeout(() => {
-                heart.remove();
-            }, 3000);
-        }
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }
 
-        // Show the overlay with a sweet message
-        yesBtn.addEventListener('click', () => {
-            overlay.style.display = 'flex';
-            // Start confetti animation
-            confettiContainer.style.display = 'block';
-            setInterval(createHeart, 300);
-        });
+                // Show the overlay with a sweet message
+                yesBtn.addEventListener('click', () => {
+                    overlay.style.display = 'flex';
+                    // Start confetti animation
+                    confettiContainer.style.display = 'block';
+                    setInterval(createHeart, 300);
+                });
 
-        // Make the "Nope" button move away on hover
-        nopeBtn.addEventListener('mouseover', () => {
-            nopeBtn.classList.add('move');
-            // Randomly change the button's position
-            nopeBtn.style.top = Math.random() * 80 + "%";
-            nopeBtn.style.left = Math.random() * 80 + "%";
-        });
+                // Make the "Nope" button move away on hover
+                nopeBtn.addEventListener('mouseover', () => {
+                    nopeBtn.classList.add('move');
+                    // Randomly change the button's position
+                    nopeBtn.style.top = Math.random() * 80 + "%";
+                    nopeBtn.style.left = Math.random() * 80 + "%";
+                });
 
-        // In case they try to click the "Nope" button
-        nopeBtn.addEventListener('click', () => {
-            alert("Hmm, o co chodzi? Sprawdź czy ten drugi guzik działa");
-        });
-    </script>
+                // In case they try to click the "Nope" button
+                nopeBtn.addEventListener('click', () => {
+                    alert("Hmm, o co chodzi? Sprawdź czy ten drugi guzik działa");
+                });
+            </script>
 
 </body>
 
