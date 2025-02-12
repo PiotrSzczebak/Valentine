@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            /* for playful vibe */
+            background: #ffdde1;
+            /* a soft, romantic color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #b50e0e;
+            text-shadow: 2px 2px #ffbcc9;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 1rem;
+            color: #333;
+        }
+
+        img {
+            width: 300px;
+            max-width: 80%;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Buttons styling */
+        .buttons {
+            margin-top: 1rem;
+        }
+
+        .btn {
+            background-color: #ff7878;
+            color: #fff;
+            border: none;
+            padding: 1rem 1.5rem;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #ff4d4d;
+            transform: scale(1.05);
+        }
+
+        /* The "Nope" button that tries to escape */
+        .btn.nope-btn {
+            position: relative;
+        }
+
+        /* This class is dynamically added via JavaScript when hovered over */
+        .btn.nope-btn.move {
+            position: absolute;
+            left: calc(50% - 80px);
+            /* approximate center for initial position */
+            animation: shake 0.3s infinite;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            50% {
+                transform: translateX(20px);
+            }
+        }
+
+        /* Hidden overlay for the "Yes!" celebration message */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            color: #fff;
+            font-size: 2rem;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Confetti container */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4d4d;
+            transform: rotate(45deg);
+            animation: float 3s ease-in infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #ff4d4d;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(600px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Heading -->
+    <h1>Hey There, Gorgeous!</h1>
+    <p>I’ve got a very important question for you.</p>
+
+    <!-- Funny GIF (Replace with your own link if you want) -->
+    <img src="https://media.giphy.com/media/l41lXu2y4QV3sKwkA/giphy.gif" alt="Funny Valentine GIF" />
+
+    <!-- The Big Question -->
+    <h1>Will You Be My Valentine?</h1>
+
+    <!-- Buttons -->
+    <div class="buttons">
+        <button class="btn yes-btn">YES!</button>
+        <button class="btn nope-btn">NOPE</button>
+    </div>
+
+    <!-- Overlay message for when "Yes!" is clicked -->
+    <div class="overlay" id="overlay">
+        <h2>YAY! <br />I promise to bring all the chocolate and goofy memes! <br />Love you!</h2>
+    </div>
+
+    <!-- Confetti container -->
+    <div class="confetti" id="confetti"></div>
+
+    <script>
+        // Grab elements
+        const nopeBtn = document.querySelector('.nope-btn');
+        const yesBtn = document.querySelector('.yes-btn');
+        const overlay = document.getElementById('overlay');
+        const confettiContainer = document.getElementById('confetti');
+
+        // Function to create floating hearts (confetti effect)
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + "%";
+            confettiContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        // Show the overlay with a sweet message
+        yesBtn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            // Start confetti animation
+            confettiContainer.style.display = 'block';
+            setInterval(createHeart, 300);
+        });
+
+        // Make the "Nope" button move away on hover
+        nopeBtn.addEventListener('mouseover', () => {
+            nopeBtn.classList.add('move');
+            // Randomly change the button's position
+            nopeBtn.style.top = Math.random() * 80 + "%";
+            nopeBtn.style.left = Math.random() * 80 + "%";
+        });
+
+        // In case they try to click the "Nope" button
+        nopeBtn.addEventListener('click', () => {
+            alert("Huh, that’s suspicious... Just kidding. You can't say no to this!");
+        });
+    </script>
+
+</body>
+
+</html>
